@@ -24,13 +24,13 @@ class OpsColQwen3Wrapper(AbsEncoder):
         model_name: str = "OpenSearch-AI/Ops-Colqwen3-4B",
         revision: str | None = None,
         device: str | None = None,
-        attn_implementation: str | None = None,
+        attn_implementation: str | None = "auto",
         trust_remote_code: bool = True,
         **kwargs,
     ):
         from transformers.utils.import_utils import is_flash_attn_2_available
 
-        if attn_implementation is None:
+        if attn_implementation == "auto":
             attn_implementation = (
                 "flash_attention_2" if is_flash_attn_2_available() else None
             )
